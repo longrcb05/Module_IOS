@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Locket Gold | Hướng dẫn cài đặt</title>
-    
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Remix Icon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
+    <!-- Background Animated Shapes -->
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
 
+    <!-- Toast Notification Container -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Container Chính -->
     <div class="app-container">
-        
+
+        <!-- =====================================================
+             PHẦN 1: HEADER
+        ====================================================== -->
         <header class="header-section">
             <div class="brand-header">
                 <div class="logo locket-logo">
@@ -26,109 +38,208 @@
                     <span class="badge">Premium</span>
                 </div>
             </div>
-            <p class="brand-desc">Trang lấy link cấu hình up Locket Gold qua Shadowrocket</p>
+            <p class="brand-desc">
+                Trang lấy cấu hình nâng cấp Locket Gold qua Shadowrocket
+            </p>
         </header>
 
-        <div class="card contact-box">
-            <p class="contact-text">Hiện tại đang có một số "thành phần" sử dụng những gì mình chia sẽ đem đi bán và chuộc lợi. Nếu bạn cần hỗ trợ cài đặt, có thể nhắn mình qua các nền tảng mạng xã hội bên dưới:</p>
-            <div class="social-links-container">
-                <a href="https://www.tiktok.com/@longrcb05" class="social-btn btn-tiktok" target="_blank">
-                    <i class="ri-tiktok-fill"></i> TikTok - @longrcb05
-                </a>
-                <a href="https://www.instagram.com/longrcb05" class="social-btn btn-instagram" target="_blank">
-                    <i class="ri-instagram-line"></i> Instagram - @longrcb05
-                </a>
-                <a href="https://t.me/longrcb05" class="social-btn btn-telegram" target="_blank">
-                    <i class="ri-telegram-fill"></i> Telegram - @longrcb05
-                </a>
-                <a href="https://zalo.me/0886557205" class="social-btn btn-zalo" target="_blank">
-                    <i class="ri-message-2-fill"></i> Zalo - longrcb05
-                </a>
-            </div>
-        </div>
+        <!-- =====================================================
+             PHẦN 2: MAIN
+        ====================================================== -->
+        <main class="main-section">
 
-        <div class="card alert-card">
-            <div class="card-header alert-header">
-                <i class="ri-error-warning-fill"></i> Lưu ý quan trọng
+            <!-- Lưu ý quan trọng -->
+            <div class="card alert-card">
+                <div class="alert-header">
+                    <i class="ri-error-warning-fill"></i> Lưu ý quan trọng
+                </div>
+                <ul class="list-info">
+                    <li><strong>KHÔNG</strong> đăng nhập iCloud vào phần Cài đặt của máy. Chỉ đăng nhập ở AppStore để tải Shadowrocket.</li>
+                    <li>Mọi tài nguyên dưới đây đều hoàn toàn <strong>miễn phí</strong>. Chúc bạn có trải nghiệm tuyệt vời!</li>
+                </ul>
             </div>
-            <ul class="list-info">
-                <li>Không <strong>đăng nhập iCloud vào phần Cài đặt</strong> chỉ đăng nhập ở AppStore để tải Shadowrocket.</li>
-                <li>Mọi thứ bên dưới đều Free. Hi vọng bạn sẽ có nhiều khoảnh khắc vui vẻ với bạn bè.</li>
-            </ul>
-        </div>
 
-        <div class="card">
-            <div class="card-header">
-                <i class="ri-server-line"></i> Link tải và cấu hình lên Locket Gold
-            </div>
-            
-            <div class="input-group">
-                <label>Link cài đặt Locket</label>
-                <div class="input-row">
-                    <input type="text" value="https://i.codevn.net/app.php?id=lrqtn14p" readonly>
-                    <div class="btn-group">
-                        <button class="btn btn-icon" title="Copy"><i class="ri-file-copy-line"></i></button>
+            <!-- Cấu hình & Link tải -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="ri-server-line"></i> Link tải và cấu hình
+                </div>
+
+                <!-- Link Locket -->
+                <div class="input-group">
+                    <label>1. Link cài đặt Locket</label>
+                    <div class="input-row">
+                        <input type="text" value="https://i.codevn.net/app.php?id=lrqtn14p" readonly>
+                        <button type="button" class="btn-copy" title="Copy" onclick="copyLink(this)">
+                            <i class="ri-file-copy-line"></i>
+                        </button>
                     </div>
+                </div>
+
+                <!-- Link Shadowrocket (Đã bỏ nút Copy) -->
+                <div class="input-group">
+                    <label>2. Link Module All_In_One (.sgmodule)</label>
+                    <div class="input-row">
+                        <input type="text" id="sr-link" value="https://raw.githubusercontent.com/longrcb05/Module_IOS/refs/heads/main/modules/Locket_longrcb05.sgmodule" readonly>
+                    </div>
+                    <!-- Nút Mở trực tiếp App -->
+                    <button type="button" class="btn-open-app" onclick="openShadowrocket()">
+                        <i class="ri-add-line"></i> Mở trong Shadowrocket
+                    </button>
                 </div>
             </div>
 
-            <div class="input-group">
-                <label>Link up lên Gold (Shadowrocket)</label>
-                <div class="input-row">
-                    <input type="text" value="https://raw.githubusercontent.com/longrcb05/Module_IOS/refs/heads/main/modules/Locket_longrcb05.sgmodule" readonly>
-                    <div class="btn-group">
-                        <button class="btn btn-icon" title="Copy"><i class="ri-file-copy-line"></i></button>
-                    </div>
+            <!-- ID AppStore -->
+            <div class="card feature-card">
+                <div class="feature-header">
+                    <div class="icon-wrapper gold"><i class="ri-apple-fill"></i></div>
+                    <h3>ID AppStore Tải App</h3>
                 </div>
-            </div>
-        </div>
-
-        <div class="vertical-grid">
-            
-            <!-- THẺ ĐÃ SỬA -->
-            <div class="card feature-card" style="width: 100%;">
-                <div class="icon-wrapper gold"><i class="ri-vip-crown-fill"></i></div>
-                <!-- Sửa lại đoạn text và bỏ chữ Tài khoản Premium -->
-                <p style="margin-bottom: 8px; color: var(--text-primary); font-size: 0.95rem; font-weight: 500;">
-                    Tài khoản tải app Locket và tải Shadowrocket. 
-                    <strong>Lưu ý:</strong> chỉ đăng nhập ở AppStore để sử dụng thôi nhé.
+                <p class="account-description">
+                    Sử dụng tài khoản này để tải Locket và Shadowrocket từ AppStore.
                 </p>
-                
+
                 <div class="blur-wrapper">
-                    <!-- Nội dung bị làm mờ (Đã thêm khoảng trắng ở CSS) -->
                     <div class="blurred-content">
-                        <div>Tài khoản: idvip1@icloud.com</div>
-                        <div>Mật khẩu: **************</div>
+                        <div class="info-row"><span>ID:</span> idvip1@icloud.com</div>
+                        <div class="info-row"><span>Pass:</span> **************</div>
                     </div>
-                    
-                    <!-- Nội dung phủ lên trên -->
                     <div class="overlay-content">
-                        <div class="overlay-title"></div>
-                        <div class="overlay-desc">Liên hệ Admin để lấy mật khẩu</div>
-                        <a href="https://www.instagram.com/longrcb05" target="_blank" class="overlay-btn btn-instagram">
-                            <i class="ri-instagram-line"></i> Instagram: longrcb05
+                        <p>Liên hệ Admin để lấy mật khẩu</p>
+                        <a href="https://www.instagram.com/longrcb05" class="btn-contact-admin" target="_blank">
+                            <i class="ri-instagram-line"></i> Inbox Instagram
                         </a>
                     </div>
                 </div>
             </div>
 
-<!-- Thẻ Dark Theme (Đã gắn link cấu hình màu) -->
+            <!-- Dark Theme -->
             <div class="card feature-card">
-                <div class="icon-wrapper purple"><i class="ri-moon-fill"></i></div>
-                <h3>Dark Theme</h3>
-                <p>Giao diện tối tinh tế cho Shadowrocket.</p>
-                
-                <!-- Thay thẻ button thành thẻ a chứa đường dẫn shadowrocket:// -->
-                <a href="shadowrocket://color?NavigationBarColor=%23151A25&NavigationBar2Color=%2310141D&NavigationBarTextColor=%23F0F0FF&NavigationBar2TextColor=%23F0F0FF&TabBarColor=%23151A25&TabBarBorderColor=%2300000000&TabBarSelectedColor=%2355E0FF&TabBarUnselectedColor=%238B8B99&TableBackgroundColor=%2310141D&TableCellBackgroundColor=%231A2230&TableCellSelectedBackgroundColor=%232A3447&TableSeparatorColor=%233A3A50&TextFieldTextColor=%23F0F0FF&PlaceholderColor=%239999AA&TextLabelTextColor=%2355E0FF&DetailLabelTextColor=%23E0E0FF&TextLabelDeleteColor=%23FF5555&HeaderFooterTextColor=%237A7A8A&SearchFieldBackgroundColor=%231A2230&IndicatorColor=%2355E0FF&ButtonIconColor=%2355E0FF&ButtonNormalColor=%23F0F0FF&ButtonNormal2Color=%23CCE6FF&ButtonNormal3Color=%237A7A8A&ButtonHighlightedColor=%2399E0FF&ButtonHighlighted2Color=%23FFFFFF&ButtonHighlighted3Color=%2355E0FF&ButtonDisabledColor=%23606070&PingSuccessTextColor=%2300E0A0&PingTimeoutTextColor=%23FF5555&DefaultDotColor=%23FFAA33&HUDBackgroundColor=%232A3447&v=1.0" class="btn btn-outline purple-outline">Áp dụng</a>
+                <div class="feature-header">
+                    <div class="icon-wrapper purple"><i class="ri-moon-clear-fill"></i></div>
+                    <h3>Giao diện tối (Dark Theme)</h3>
+                </div>
+                <p>Cài đặt giao diện tối tinh tế và đẹp mắt dành riêng cho Shadowrocket.</p>
+                <a href="shadowrocket://color?NavigationBarColor=%23151A25&NavigationBar2Color=%2310141D&NavigationBarTextColor=%23F0F0FF&NavigationBar2TextColor=%23F0F0FF&TabBarColor=%23151A25&TabBarBorderColor=%2300000000&TabBarSelectedColor=%2355E0FF&TabBarUnselectedColor=%238B8B99&TableBackgroundColor=%2310141D&TableCellBackgroundColor=%231A2230&TableCellSelectedBackgroundColor=%232A3447&TableSeparatorColor=%233A3A50&TextFieldTextColor=%23F0F0FF&PlaceholderColor=%239999AA&TextLabelTextColor=%2355E0FF&DetailLabelTextColor=%23E0E0FF&TextLabelDeleteColor=%23FF5555&HeaderFooterTextColor=%237A7A8A&SearchFieldBackgroundColor=%231A2230&IndicatorColor=%2355E0FF&ButtonIconColor=%2355E0FF&ButtonNormalColor=%23F0F0FF&ButtonNormal2Color=%23CCE6FF&ButtonNormal3Color=%237A7A8A&ButtonHighlightedColor=%2399E0FF&ButtonHighlighted2Color=%23FFFFFF&ButtonHighlighted3Color=%2355E0FF&ButtonDisabledColor=%23606070&PingSuccessTextColor=%2300E0A0&PingTimeoutTextColor=%23FF5555&DefaultDotColor=%23FFAA33&HUDBackgroundColor=%232A3447&v=1.0" class="btn-theme">
+                    <i class="ri-palette-line"></i> Áp dụng ngay
+                </a>
             </div>
-            
-        </div>
 
+            <!-- Thông tin liên hệ -->
+            <div class="card social-card">
+                <div class="card-title text-center">
+                    <i class="ri-group-fill"></i> Cộng đồng & Hỗ trợ
+                </div>
+                
+                <div class="social-links-grid">
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@longrcb05" class="social-btn tiktok" target="_blank">
+                        <div class="social-icon"><i class="ri-tiktok-fill"></i></div>
+                        <div class="social-info">
+                            <span class="platform">TikTok</span>
+                            <span class="handle">@longrcb05</span>
+                        </div>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/longrcb05" class="social-btn instagram" target="_blank">
+                        <div class="social-icon"><i class="ri-instagram-line"></i></div>
+                        <div class="social-info">
+                            <span class="platform">Instagram</span>
+                            <span class="handle">@longrcb05</span>
+                        </div>
+                    </a>
+
+                    <!-- Telegram -->
+                    <a href="https://t.me/longrcb05" class="social-btn telegram" target="_blank">
+                        <div class="social-icon"><i class="ri-telegram-fill"></i></div>
+                        <div class="social-info">
+                            <span class="platform">Telegram</span>
+                            <span class="handle">@longrcb05</span>
+                        </div>
+                    </a>
+
+                    <!-- Zalo -->
+                    <a href="https://zalo.me/0886557205" class="social-btn zalo" target="_blank">
+                        <div class="social-icon"><i class="ri-message-2-fill"></i></div>
+                        <div class="social-info">
+                            <span class="platform">Zalo</span>
+                            <span class="handle">longrcb05</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- =====================================================
+             PHẦN 3: FOOTER
+        ====================================================== -->
         <footer class="footer">
-            &copy; 2026 longrcb05. All rights reserved.
+            <p>&copy; 2026 longrcb05. All rights reserved.</p>
         </footer>
 
     </div>
 
+    <!-- =====================================================
+         JAVASCRIPT CHỨC NĂNG
+    ====================================================== -->
+    <script>
+        // Hàm hiển thị thông báo (Toast)
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            // Đổi icon dựa trên loại thông báo
+            const icon = type === 'success' ? 'ri-checkbox-circle-fill' : 'ri-loader-4-line ri-spin';
+            
+            toast.innerHTML = `<i class="${icon}"></i> ${message}`;
+            toast.className = `toast show ${type}`;
+            
+            // Tự động ẩn sau 3 giây
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Hàm Copy Link
+        function copyLink(button) {
+            const input = button.closest(".input-row").querySelector("input");
+            
+            navigator.clipboard.writeText(input.value).then(() => {
+                const icon = button.querySelector("i");
+                const originalClass = icon.className;
+                
+                // Đổi trạng thái nút
+                button.classList.add("copied");
+                icon.className = "ri-check-line";
+                
+                // Hiển thị thông báo
+                showToast('Đã copy link thành công!', 'success');
+                
+                // Trả lại trạng thái ban đầu sau 2s
+                setTimeout(() => {
+                    button.classList.remove("copied");
+                    icon.className = originalClass;
+                }, 2000);
+            }).catch(() => {
+                input.select();
+                document.execCommand("copy");
+                showToast('Đã copy link thành công!', 'success');
+            });
+        }
+
+        // Hàm Tự động nhảy sang Shadowrocket
+        function openShadowrocket() {
+            const url = document.getElementById('sr-link').value;
+            
+            // Hiển thị thông báo đang chuyển hướng
+            showToast('Đang chuyển hướng sang Shadowrocket...', 'info');
+            
+            // Delay 1 chút để người dùng kịp đọc thông báo rồi mới nhảy app
+            setTimeout(() => {
+                // URL Scheme gọi trực tiếp app Shadowrocket và cài đặt module
+                window.location.href = `shadowrocket://add/module?url=${encodeURIComponent(url)}`;
+            }, 800);
+        }
+    </script>
 </body>
 </html>
