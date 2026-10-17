@@ -65,7 +65,7 @@
                     <i class="ri-server-line"></i> Link tải và cấu hình
                 </div>
 
-                <!-- Link Locket -->
+                <!-- 1. Link Locket -->
                 <div class="input-group">
                     <label>1. Link cài đặt Locket</label>
                     <div class="input-row">
@@ -76,15 +76,33 @@
                     </div>
                 </div>
 
-                <!-- Link Shadowrocket (Đã bỏ nút Copy) -->
+                <!-- 2. Link Config (.conf) -->
                 <div class="input-group">
-                    <label>2. Link Module All_In_One (.sgmodule)</label>
+                    <label>2. Link Config (.conf)</label>
                     <div class="input-row">
-                        <input type="text" id="sr-link" value="https://raw.githubusercontent.com/longrcb05/Module_IOS/refs/heads/main/modules/Locket_longrcb05.sgmodule" readonly>
+                        <input type="text" id="sr-conf" value="https://raw.githubusercontent.com/longrcb05/Module_IOS/main/Locket_longrcb05.conf" readonly>
+                        <button type="button" class="btn-copy" title="Copy" onclick="copyLink(this)">
+                            <i class="ri-file-copy-line"></i>
+                        </button>
+                    </div>
+                    <!-- Nút tải thẳng Conf -->
+                    <button type="button" class="btn-open-app" style="background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);" onclick="openShadowrocket('sr-conf', 'Config')">
+                        <i class="ri-file-download-line"></i> Tải Config vào Shadowrocket
+                    </button>
+                </div>
+
+                <!-- 3. Link Module Locket Gold (.sgmodule) -->
+                <div class="input-group">
+                    <label>3. Link Module (.sgmodule)</label>
+                    <div class="input-row">
+                        <input type="text" id="sr-module" value="https://raw.githubusercontent.com/longrcb05/Module_IOS/main/modules/Locket_longrcb05.sgmodule" readonly>
+                        <button type="button" class="btn-copy" title="Copy" onclick="copyLink(this)">
+                            <i class="ri-file-copy-line"></i>
+                        </button>
                     </div>
                     <!-- Nút Mở trực tiếp App -->
-                    <button type="button" class="btn-open-app" onclick="openShadowrocket()">
-                        <i class="ri-add-line"></i> Mở trong Shadowrocket
+                    <button type="button" class="btn-open-app" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);" onclick="openShadowrocket('sr-module', 'Module')">
+                        <i class="ri-add-line"></i> Thêm Module vào Shadowrocket
                     </button>
                 </div>
             </div>
@@ -164,7 +182,7 @@
                         <div class="social-icon"><i class="ri-message-2-fill"></i></div>
                         <div class="social-info">
                             <span class="platform">Zalo</span>
-                            <span class="handle">longrcb05</span>
+                            <span class="handle">@longrcb05</span>
                         </div>
                     </a>
                 </div>
@@ -188,13 +206,11 @@
         // Hàm hiển thị thông báo (Toast)
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
-            // Đổi icon dựa trên loại thông báo
             const icon = type === 'success' ? 'ri-checkbox-circle-fill' : 'ri-loader-4-line ri-spin';
             
             toast.innerHTML = `<i class="${icon}"></i> ${message}`;
             toast.className = `toast show ${type}`;
             
-            // Tự động ẩn sau 3 giây
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
@@ -208,14 +224,10 @@
                 const icon = button.querySelector("i");
                 const originalClass = icon.className;
                 
-                // Đổi trạng thái nút
                 button.classList.add("copied");
                 icon.className = "ri-check-line";
-                
-                // Hiển thị thông báo
                 showToast('Đã copy link thành công!', 'success');
                 
-                // Trả lại trạng thái ban đầu sau 2s
                 setTimeout(() => {
                     button.classList.remove("copied");
                     icon.className = originalClass;
@@ -227,18 +239,27 @@
             });
         }
 
-        // Hàm Tự động nhảy sang Shadowrocket
-        function openShadowrocket() {
-            const url = document.getElementById('sr-link').value;
+        // Hàm Tự động Copy URL & Mở Shadowrocket
+        function openShadowrocket(inputId, typeName) {
+            const url = document.getElementById(inputId).value;
             
-            // Hiển thị thông báo đang chuyển hướng
-            showToast('Đang chuyển hướng sang Shadowrocket...', 'info');
+            // 1. Dùng thủ thuật Copy ẩn để đảm bảo Shadowrocket quét được link
+            const tempInput = document.createElement("input");
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(`Đã lưu link & Đang mở Shadowrocket...`, 'success');
             
-            // Delay 1 chút để người dùng kịp đọc thông báo rồi mới nhảy app
-            setTimeout(() => {
-                // URL Scheme gọi trực tiếp app Shadowrocket và cài đặt module
-                window.location.href = `shadowrocket://add/module?url=${encodeURIComponent(url)}`;
-            }, 800);
+            // 2. Chuyển hướng trực tiếp bằng thẻ a ảo (Bypass cơ chế chặn của iOS Safari)
+            const scheme = typeName === 'Config' ? 'shadowrocket://add/config' : 'shadowrocket://add/module';
+            const deepLink = `${scheme}?url=${url}`;
+            
+            const a = document.createElement('a');
+            a.href = deepLink;
+            a.click();
         }
     </script>
 </body>
