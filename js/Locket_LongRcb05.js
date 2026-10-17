@@ -1,6 +1,5 @@
 // ========= ID ========= //
 const mapping = {
-  '%E8%BD%A6%E7%A5%A8%E7%A5%A8': ['vip+watch_vip'],
   'Locket': ['Gold']
 };
 // =========   Phần cố định  ========= // 
@@ -20,7 +19,7 @@ var longrcb05 = {
           "amount": 399000.0,
           "currency": "VND"
       },
-      expires_date: "9999-04-23T10:10:14Z",
+      expires_date: "9999-01-09T10:10:14Z",
       grace_period_expires_date: null,
       refunded_at: null,
       unsubscribe_detected_at: null,
@@ -33,13 +32,13 @@ var longrcb05 = {
       grace_period_expires_date: null,
       purchase_date: "2005-04-23T10:10:14Z",
       product_identifier: "locket_1600_1y",
-      expires_date: "9999-04-23T10:10:14Z"
+      expires_date: "9999-01-09T10:10:14Z"
   };
 const match = Object.keys(mapping).find(e => ua.includes(e));
 if (match) {
   let [e, s] = mapping[match];
   s ? (locketGold.product_identifier = s, obj.subscriber.subscriptions[s] = longrcb05) : obj.subscriber.subscriptions["locket_1600_1y"] = longrcb05, obj.subscriber.entitlements[e] = locketGold
-} else obj.subscriber.subscriptions["locket_1600_1y"] = longrcb05, obj.subscriber.entitlements["pro"] = locketGold;
+} else obj.subscriber.subscriptions["locket_1600_1y"] = longrcb05, obj.subscriber.entitlements.pro = locketGold;
 $done({
   body: JSON.stringify(obj)
 });
