@@ -9,8 +9,320 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Remix Icon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- =====================================================
+         CSS GỘP TRỰC TIẾP
+    ====================================================== -->
+    <style>
+        /* RESET & VARIABLES */
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gold-main: #fbbf24;
+            --gold-glow: rgba(251, 191, 36, 0.3);
+            --alert-bg: rgba(239, 68, 68, 0.1);
+            --alert-border: rgba(239, 68, 68, 0.2);
+            --alert-text: #fca5a5;
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* BACKGROUND ANIMATION */
+        .bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        .shape-1 { width: 300px; height: 300px; background: rgba(251, 191, 36, 0.12); top: -50px; left: -50px; }
+        .shape-2 { width: 400px; height: 400px; background: rgba(56, 189, 248, 0.08); bottom: -100px; right: -100px; animation-delay: -5s; }
+        .shape-3 { width: 250px; height: 250px; background: rgba(168, 85, 247, 0.08); top: 40%; left: 50%; transform: translateX(-50%); }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(30px) scale(1.05); }
+        }
+
+        /* LAYOUT & HEADER */
+        .app-container {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .main-section {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .header-section { text-align: center; }
+
+        .brand-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.25);
+        }
+
+        .brand-text h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+        .brand-text span { color: var(--gold-main); }
+        .brand-desc { color: var(--text-muted); font-size: 15px; }
+
+        .badge {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--gold-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        /* CARDS (GLASSMORPHISM) */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .card-title, .alert-header, .feature-header {
+            font-size: 17px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+        .card-title i { color: var(--gold-main); font-size: 22px; }
+
+        /* ALERTS */
+        .alert-card { background: var(--alert-bg); border: 1px solid var(--alert-border); }
+        .alert-header i { color: var(--alert-text); font-size: 22px; }
+
+        .list-info { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .list-info li { font-size: 14.5px; color: #f8fafc; position: relative; padding-left: 20px; line-height: 1.5; }
+        .list-info li::before { content: "•"; color: var(--alert-text); font-size: 24px; position: absolute; left: 0; top: -4px; }
+        .list-info li strong { color: #fff; }
+
+        /* INPUTS, BUTTONS & TOAST */
+        .input-group label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .input-row { display: flex; gap: 12px; align-items: center; }
+
+        .input-row input {
+            flex: 1;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 0 16px;
+            color: var(--gold-main);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            outline: none;
+            transition: 0.3s ease;
+            width: 100%;
+            text-overflow: ellipsis;
+        }
+        .input-row input:focus { border-color: rgba(251, 191, 36, 0.5); box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1); }
+
+        .btn-copy {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            border: none;
+            background: var(--gold-main);
+            color: #000;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .btn-copy:active { transform: scale(0.92); }
+        .btn-copy.copied { background: #10b981; color: #fff; }
+
+        .btn-open-app {
+            width: 100%;
+            margin-top: 14px;
+            background: #3b82f6;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+        }
+        .btn-open-app i { font-size: 20px; }
+        .btn-open-app:active { transform: scale(0.96); box-shadow: none; }
+
+        /* Toast Notification */
+        .toast {
+            visibility: hidden;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border-radius: 14px;
+            padding: 14px 24px;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            bottom: 40px;
+            font-size: 14.5px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            transform: translate(-50%, 20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .toast.show { visibility: visible; opacity: 1; transform: translate(-50%, 0); }
+        .toast i { font-size: 18px; }
+        .toast.success i { color: #10b981; }
+        .toast.info i { color: #3b82f6; }
+
+        /* FEATURES BLUR WRAPPER */
+        .icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .icon-wrapper.gold { background: rgba(251, 191, 36, 0.15); color: var(--gold-main); }
+        .icon-wrapper.purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+
+        .feature-header h3 { font-size: 16px; font-weight: 600; }
+        .account-description { font-size: 14px; color: var(--text-muted); }
+
+        .blur-wrapper { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .blurred-content { background: rgba(0, 0, 0, 0.4); padding: 20px; filter: blur(5px); user-select: none; }
+        .info-row { font-family: var(--font-mono); font-size: 14px; margin-bottom: 8px; }
+        .info-row span { color: var(--text-muted); display: inline-block; width: 40px;}
+
+        .overlay-content {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+            background: rgba(15, 23, 42, 0.5); z-index: 2;
+        }
+        .overlay-content p { font-size: 14px; font-weight: 500; color: #fff; }
+
+        .btn-contact-admin {
+            background: linear-gradient(135deg, #e1306c, #f56040);
+            color: #fff; text-decoration: none; padding: 10px 24px; border-radius: 20px;
+            font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.3s; border: none;
+        }
+        .btn-contact-admin:active { transform: scale(0.95); }
+
+        .btn-theme {
+            background: rgba(168, 85, 247, 0.1); color: #e9d5ff; border: 1px solid rgba(168, 85, 247, 0.2);
+            text-decoration: none; padding: 14px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            gap: 8px; font-weight: 600; transition: 0.3s;
+        }
+        .btn-theme:hover { background: rgba(168, 85, 247, 0.15); }
+        .btn-theme:active { transform: scale(0.98); }
+
+        /* SOCIAL LINKS */
+        .social-card .card-title { justify-content: center; margin-bottom: 4px; }
+        .social-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+        .social-btn {
+            text-decoration: none; padding: 12px; border-radius: 16px; display: flex; align-items: center; gap: 12px;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .social-btn:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.15); }
+        .social-btn:active { transform: scale(0.96); }
+
+        .social-icon {
+            width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: #fff; flex-shrink: 0;
+        }
+        .social-info { display: flex; flex-direction: column; }
+        .social-info .platform { color: #fff; font-size: 14.5px; font-weight: 600; line-height: 1.2; }
+        .social-info .handle { color: var(--text-muted); font-size: 12px; margin-top: 2px; }
+
+        .tiktok .social-icon { background: #000; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .tiktok:hover .social-icon { text-shadow: 2px 2px 0px #ff0050, -2px -2px 0px #00f2fe; }
+        .instagram .social-icon { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3); }
+        .telegram .social-icon { background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%); box-shadow: 0 4px 15px rgba(34, 158, 217, 0.3); }
+        .zalo .social-icon { background: linear-gradient(135deg, #0190f3 0%, #0074c2 100%); box-shadow: 0 4px 15px rgba(1, 144, 243, 0.3); }
+
+        /* FOOTER */
+        .footer { text-align: center; color: var(--text-muted); font-size: 13px; padding: 10px 0 20px; }
+    </style>
 </head>
 
 <body>
@@ -243,7 +555,7 @@
         function openShadowrocket(inputId, typeName) {
             const url = document.getElementById(inputId).value;
             
-            // 1. Dùng thủ thuật Copy ẩn để đảm bảo Shadowrocket quét được link
+            // 1. Copy ẩn vào Clipboard để dự phòng Shadowrocket tự động bắt link
             const tempInput = document.createElement("input");
             tempInput.value = url;
             document.body.appendChild(tempInput);
@@ -251,15 +563,22 @@
             document.execCommand("copy");
             document.body.removeChild(tempInput);
 
-            showToast(`Đã lưu link & Đang mở Shadowrocket...`, 'success');
+            showToast(`Đang tải ${typeName} vào Shadowrocket...`, 'info');
             
-            // 2. Chuyển hướng trực tiếp bằng thẻ a ảo (Bypass cơ chế chặn của iOS Safari)
-            const scheme = typeName === 'Config' ? 'shadowrocket://add/config' : 'shadowrocket://add/module';
-            const deepLink = `${scheme}?url=${url}`;
+            // 2. Chuyển hướng bằng URL Scheme (Cập nhật Scheme mới nhất của Shadowrocket)
+            let deepLink = '';
+            if (typeName === 'Config') {
+                // Scheme chuẩn để thêm file .conf
+                deepLink = `shadowrocket://config/add/${url}`;
+            } else {
+                // Scheme chuẩn để cài đặt file .sgmodule
+                deepLink = `shadowrocket://install?module=${url}`;
+            }
             
-            const a = document.createElement('a');
-            a.href = deepLink;
-            a.click();
+            // Delay siêu nhỏ (300ms) để Toast kịp hiện lên trước khi văng sang App
+            setTimeout(() => {
+                window.location.href = deepLink;
+            }, 300);
         }
     </script>
 </body>
