@@ -417,6 +417,16 @@
                         <i class="ri-add-line"></i> Thêm Module vào Shadowrocket
                     </button>
                 </div>
+
+                <!-- 4. Nút Tải Chứng chỉ (Đã ẩn link text) -->
+                <div class="input-group">
+                    <label>4. Cài đặt Chứng chỉ Locket Gold (DNS)</label>
+                    <!-- Nút Cài đặt Chứng chỉ bằng Safari -->
+                    <button type="button" class="btn-open-app" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); margin-top: 4px;" onclick="installProfile('https://raw.githubusercontent.com/longrcb05/Module_IOS/main/assets/LocketGold.mobileconfig')">
+                        <i class="ri-shield-check-line"></i> Tải và Cài đặt Chứng chỉ
+                    </button>
+                </div>
+
             </div>
 
             <!-- ID AppStore -->
@@ -494,7 +504,7 @@
                         <div class="social-icon"><i class="ri-message-2-fill"></i></div>
                         <div class="social-info">
                             <span class="platform">Zalo</span>
-                            <span class="handle">@longrcb05</span>
+                            <span class="handle">0886557205</span>
                         </div>
                     </a>
                 </div>
@@ -579,6 +589,17 @@
             setTimeout(() => {
                 window.location.href = deepLink;
             }, 300);
+        }
+
+        // Hàm tải chứng chỉ .mobileconfig (Nhận link trực tiếp)
+        function installProfile(url) {
+            // Hiện thông báo hướng dẫn cho người dùng
+            showToast('Đang tải Chứng chỉ. Vui lòng bấm "Cho phép" (Allow)...', 'info');
+            
+            // Chuyển hướng trình duyệt đến file chứng chỉ
+            setTimeout(() => {
+                window.location.href = url;
+            }, 800);
         }
     </script>
 </body>
