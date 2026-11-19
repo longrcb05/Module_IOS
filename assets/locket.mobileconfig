@@ -25,12 +25,9 @@
                     <string>www.revenuecat.com</string>
                     <string>api2.amplitude.com</string>
                     <string>oy24bn.skadsdkless.appsflyersdk.com</string>
-                    <string>firebaselogging-pa.googleapis.com</string>
+                    <string>firebaseremoteconfig.googleapis.com</string>
                     <string>appsflyersdk.com</string>
                     <string>ingest.sentry.io</string>
-                    <string>adsmoloco.com</string>
-                    <string>moloco.com</string>
-                    <string>ads.vungle.com</string>
                 </array>
             </dict>
             <key>OnDemandRules</key>
@@ -51,7 +48,9 @@
             <key>PayloadDescription</key>
             <string>Configures device to use Locket VIP Free DNS</string>
             <key>PayloadDisplayName</key>
-            <string>Locket VIP Server</string>
+            <string>Locket Gold DNS</string>
+            <key>PayloadOrganization</key>
+            <string>Đinh Duy Vinh</string>
             <key>PayloadIdentifier</key>
             <string>com.apple.dnsSettings.managed.locketvip</string>
             <key>PayloadType</key>
