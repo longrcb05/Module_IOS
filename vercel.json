@@ -1,0 +1,30 @@
+{
+    "headers": [
+        {
+            "source": "/assets/LocketGold.mobileconfig",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-apple-aspen-config"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store, no-cache, must-revalidate, max-age=0"
+                }
+            ]
+        },
+        {
+            "source": "/assets/locket.mobileconfig",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-apple-aspen-config"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store, no-cache, must-revalidate, max-age=0"
+                }
+            ]
+        }
+    ]
+}
